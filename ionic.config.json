@@ -1,0 +1,7 @@
+{
+  "name": "catbreed",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
