@@ -20,13 +20,14 @@ import { ImageResolverService } from 'src/app/core/services/image-resolver.servi
       aspect-ratio: 4 / 3;
       display: block;
     }
-    .image-cat {
+    .breed__image {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: contain;
       border-radius: 20px;
       position: sticky;
       top: 100px;
+      text-align: center;
 
       @media screen and (max-width: 767px) {
         box-shadow: 0px 5px 8px 20px rgb(244 235 221);
