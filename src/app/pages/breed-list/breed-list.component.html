@@ -1,0 +1,7 @@
+<app-header title="Cat breeds"></app-header>
+
+<ion-content [fullscreen]="true">
+  <app-search (handleSearch)="handleSearch($event)"></app-search>
+
+  <app-list [searchTerm]="searchTerm()"></app-list>
+</ion-content>

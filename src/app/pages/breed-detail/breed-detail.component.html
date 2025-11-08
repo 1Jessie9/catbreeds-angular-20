@@ -1,0 +1,63 @@
+@if(breed()) {
+  <app-header [title]="breed()!.name" [showBack]="true"></app-header>
+
+  <ion-content [fullscreen]="true">
+    <section class="breed">
+      <ion-row>
+        <ion-col
+          size-xs="12" size-sm="5" size-md="5" size-lg="5" size-xl="5"
+          class="breed__imageCol"
+        >
+          <app-breed-image
+            [refId]="breed()!.reference_image_id"
+            [classImg]="'breed__image'"
+            [alt]="'cat breed ' + breed()!.name">
+          </app-breed-image>
+        </ion-col>
+
+        <ion-col size-xs="12" size-sm="12" size-md="7" size-lg="7" size-xl="7">
+          <section class="breed__detail">
+            <div class="breed__shadowBox"></div>
+
+            <h1 class="breed__title">{{ breed()!.name }}</h1>
+
+            <p class="breed__description">{{ breed()!.description }}</p>
+
+            <div class="breed__cards">
+              @for (card of breed()!.cardsInfo; track card.id) {
+                <section class="breed__card">
+                  <p class="breed__cardTitle">
+                    <ion-icon [name]="card.icon"></ion-icon>
+                    <span>{{card.name}}</span>
+                  </p>
+
+                  <span class="breed__cardValue">{{card.value}}</span>
+                </section>
+              }
+            </div>
+
+            <div class="breed__features">
+              @for (feature of breed()!.features; track feature.id) {
+                <div class="breed__feature">
+                  <p class="breed__featureTitle">
+                    <span class="breed__featureName">{{feature.name}}: </span>
+                    <span>{{feature.value}}/5</span>
+                  </p>
+
+                  <section class="breed__items">
+                    @for (item of [0,1,2,3,4]; track item) {
+                      <div
+                        class="breed__item"
+                        [ngClass]="{'breed__item--active': feature.value > $index && activeAnimation()}">
+                      </div>
+                    }
+                  </section>
+                </div>
+              }
+            </div>
+          </section>
+        </ion-col>
+      </ion-row>
+    </section>
+  </ion-content>
+}

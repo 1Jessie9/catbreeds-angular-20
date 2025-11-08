@@ -1,0 +1,43 @@
+<section class="breedList">
+  <ion-row>
+    @for (breed of catbreeds; track breed.id) {
+      <ion-col size-xs="12" size-sm="12" size-md="4" size-lg="4" size-xl="4">
+        <div class="breedList__card" (click)="goToDetail(breed.id)">
+          <span class="breedList__arrow">
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </span>
+
+          <app-breed-image
+            [refId]="breed.reference_image_id"
+            [alt]="'cat breed ' + breed.name"
+            [classImg]="'image'">
+          </app-breed-image>
+
+          <section class="breedList__info">
+            <h6 class="breedList__title">{{ breed.name }}</h6>
+
+            <span class="breedList__origin">{{ breed.origin }}</span>
+
+            <p class="breedList__line breedList__line--spaced">
+              <span class="breedList__label">Intelligence:</span>
+              <span class="breedList__value">{{ breed.intelligence }}/5</span>
+            </p>
+
+            <p class="breedList__line">
+              <span class="breedList__label">Energy level:</span>
+              <span class="breedList__value">{{ breed.energy_level }}/5</span>
+            </p>
+          </section>
+        </div>
+      </ion-col>
+    }
+
+    <ion-infinite-scroll threshold="20%" (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content
+        loadingText="loading breeds"
+        color="tertiary"
+        loadingSpinner="circles">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-row>
+</section>
